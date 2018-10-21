@@ -33,3 +33,11 @@ def register_handle(request):
 def login(request):
     return render(request, 'dj_user/login.html')
 
+def user_center_info(request):
+    return render(request, 'dj_user/user_center_info.html')
+
+def user_center_order(request):
+    return render(request, 'dj_user/user_center_order.html')
+
+def user_center_site(request):
+    return render(request, 'dj_user/user_center_site.html')
