@@ -3,10 +3,10 @@ from hashlib import md5
 from django.shortcuts import render, redirect
 # Create your views here.
 
-from dj_user.models import *
+from users.models import *
 
 def register(request):
-    return render(request, 'dj_user/register.html')
+    return render(request, 'users/register.html')
 
 def register_handle(request):
     pwd1 = request.POST.get('pwd')
@@ -26,18 +26,18 @@ def register_handle(request):
         user.user_email = request.POST.get('email')
         user.user_pwd = pwd3
         user.save()
-        return redirect('dj_user:login')
+        return redirect('users:login')
     else:
-        return redirect('dj_user:register')
+        return redirect('users:register')
 
 def login(request):
-    return render(request, 'dj_user/login.html')
+    return render(request, 'users/login.html')
 
 def user_center_info(request):
-    return render(request, 'dj_user/user_center_info.html')
+    return render(request, 'users/user_center_info.html')
 
 def user_center_order(request):
-    return render(request, 'dj_user/user_center_order.html')
+    return render(request, 'users/user_center_order.html')
 
 def user_center_site(request):
-    return render(request, 'dj_user/user_center_site.html')
+    return render(request, 'users/user_center_site.html')

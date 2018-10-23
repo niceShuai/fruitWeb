@@ -2,6 +2,6 @@ from django.contrib import admin
 
 # Register your models here.
 
-from dj_user.models import *
+from users.models import *
 
 admin.site.register(UserInfo)

@@ -1,4 +1,4 @@
-{% extends 'dj_user/base.html' %}
+{% extends 'users/base.html' %}
 	{% block title %}注册{% endblock title %}
     {% block head %}
 	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
@@ -19,10 +19,10 @@
 		<div class="r_con fr">
 			<div class="reg_title clearfix">
 				<h1>用户注册</h1>
-				<a href="{% url 'dj_user:login' %}">登录</a>
+				<a href="{% url 'users:login' %}">登录</a>
 			</div>
 			<div class="reg_form clearfix">
-				<form action="{% url 'dj_user:register_handle' %}" method="post">
+				<form action="{% url 'users:register_handle' %}" method="post">
                     {% csrf_token %}
 				<ul>
 					<li>
