@@ -1,12 +1,23 @@
 from hashlib import md5
 
 from django.shortcuts import render, redirect
+from django.http.response import JsonResponse
 # Create your views here.
 
 from users.models import *
 
 def register(request):
     return render(request, 'users/register.html')
+
+# 用ajax判断注册时用户名是否存在于数据库中
+def register_search(request):
+    # uname为注册时用户输入的用户名
+    uname = request.GET.get('uname', None)
+    print(uname)
+    # 查询数据库是否存在该数据
+    flag = UserInfo.objects.filter(user_name=uname).exists()
+    print(flag)
+    return JsonResponse({"flag":flag})
 
 def register_handle(request):
     pwd1 = request.POST.get('pwd')
