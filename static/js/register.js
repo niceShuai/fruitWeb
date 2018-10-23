@@ -42,6 +42,7 @@ $(function(){
 		var len = $('#user_name').val().length;
 		if(len<5||len>20)
 		{
+			// $('#user_name').next().html(len)
 			$('#user_name').next().html('请输入5-20个字符的用户名')
 			$('#user_name').next().show();
 			error_name = true;
@@ -105,23 +106,39 @@ $(function(){
 	}
 
 
-	$('#reg_form').submit(function() {
-		check_user_name();
-		check_pwd();
-		check_cpwd();
-		check_email();
+	// $('#reg_form').submit(function() {
+	// 	check_user_name();
+	// 	check_pwd();
+	// 	check_cpwd();
+	// 	check_email();
+	//
+	// 	if(error_name == false && error_password == false && error_check_password == false && error_email == false && error_check == false)
+	// 	{
+	// 		return true;
+	// 	}
+	// 	else
+	// 	{
+	// 		return false;
+	// 	}
+	//
+	// });
 
-		if(error_name == false && error_password == false && error_check_password == false && error_email == false && error_check == false)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		$('#btn').click(function() {
+			check_user_name();
+			check_pwd();
+			check_cpwd();
+			check_email();
+
+			if(error_name == false && error_password == false && error_check_password == false && error_email == false && error_check == false)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 
 	});
-
 
 
 
