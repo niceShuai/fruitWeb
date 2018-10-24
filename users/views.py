@@ -1,7 +1,7 @@
 from hashlib import md5
 
 from django.shortcuts import render, redirect
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse, HttpResponse, HttpResponseRedirect
 # Create your views here.
 
 from users.models import *
@@ -42,7 +42,51 @@ def register_handle(request):
         return redirect('users:register')
 
 def login(request):
-    return render(request, 'users/login.html')
+    # 获取存在cookie里的用户名
+    u_name = request.COOKIES.get('u_name','')
+    context = {'error_flag':0, 'u_name': u_name}
+    return render(request, 'users/login.html', context)
+
+def login_handel(request):
+    # 接收登陆页面用户输入的用户名和密码
+    u_name = request.POST.get('username','')
+    u_pwd = request.POST.get('pwd','')
+    user_info = UserInfo.objects.filter(user_name=u_name)
+    # 如果在数据库中找到了该用户名
+    if len(user_info) != 0:
+        # 将登陆时输入的密码加密与数据库中密码做比较
+        u_pwd_str = str(u_pwd)
+        m = md5()
+        m.update(u_pwd_str.encode('utf-8'))
+        u_pwd_md5 = m.hexdigest()
+        if u_pwd_md5 == user_info[0].user_pwd:
+            # 验证成功后，将用户名存储至session，建立会话保持
+            remember_name = request.POST.get('remember_name', '')
+            request.session['u_name'] = u_name
+            request.session.set_expiry(6000)
+            hrr = HttpResponseRedirect('/user/user_center_info')
+            # 如果remember_name==1，则将用户名存储至cookie
+            if remember_name != '':
+                hrr.set_cookie('u_name', u_name)
+            else:
+                hrr.set_cookie('u_name','', max_age=-1)
+
+            print('用户名和密码匹配正确')
+            # 转到用户信息界面
+            return hrr
+        else:
+            # 如果用户名错误，则仍在登陆页面，把输入的错误用户名显示在text框内
+            context = {'u_name': u_name, 'error_flag':1}
+            return render(request, 'users/login.html', context)
+    # 如果在数据库中没有找到该用户名
+    else:
+        context = {'u_name': u_name, 'error_flag': 1}
+        return render(request, 'users/login.html', context)
+
+
+
+
+
 
 def user_center_info(request):
     return render(request, 'users/user_center_info.html')
