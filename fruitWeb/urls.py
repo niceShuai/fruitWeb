@@ -16,10 +16,13 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
+from goods import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('users.urls', namespace='users')),
+    url(r'^index$', views.index),
+    url(r'^$', views.index),
     url(r'^goods/', include('goods.urls', namespace='goods')),
     url(r'^tinymce/', include('tinymce.urls'))
 ]
