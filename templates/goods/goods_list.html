@@ -1,0 +1,110 @@
+{% extends 'goods/base.html' %}
+{% load static %}
+
+{% block title %}商品列表{% endblock %}
+{% block head %}
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+           $('.sort_bar a').each(function () {
+               if($(this)[0].href == String(window.location)){
+                   $(this).addClass('active').siblings().removeClass();
+               }
+           });
+        });
+    </script>
+
+{% endblock head %}
+
+<body>
+
+    {% block main %}
+
+	<div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<h1>全部商品分类</h1>	
+				<span></span>			
+				<ul class="subnav">
+					<li><a href="#" class="fruit">新鲜水果</a></li>
+					<li><a href="#" class="seafood">海鲜水产</a></li>
+					<li><a href="#" class="meet">猪牛羊肉</a></li>
+					<li><a href="#" class="egg">禽类蛋品</a></li>
+					<li><a href="#" class="vegetables">新鲜蔬菜</a></li>
+					<li><a href="#" class="ice">速冻食品</a></li>
+				</ul>
+			</div>
+			<ul class="navlist fl">
+				<li><a href="">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="breadcrumb">
+		<a href="#">全部分类</a>
+		<span>></span>
+		<a href="#">新鲜水果</a>
+	</div>
+
+	<div class="main_wrap clearfix">
+		<div class="l_wrap fl clearfix">
+			<div class="new_goods">
+				<h3>新品推荐</h3>
+				<ul>
+					<li>
+						<a href="#"><img src="/static/images/goods/goods001.jpg"></a>
+						<h4><a href="#">进口柠檬</a></h4>
+						<div class="prize">￥3.90</div>
+					</li>
+                    {% for foo in more_click %}
+                    
+                    {% endfor %}
+                    
+
+				</ul>
+			</div>
+		</div>
+
+		<div class="r_wrap fr clearfix">
+			<div class="sort_bar">
+				<a href="{% url 'goods:goods_list' %}?type={{ type }}&sort_flag=0&page_num=1" class="active">默认</a>
+				<a href="{% url 'goods:goods_list' %}?type={{ type }}&sort_flag=1&page_num=1">价格</a>
+				<a href="{% url 'goods:goods_list' %}?type={{ type }}&sort_flag=2&page_num=1">人气</a>
+			</div>
+
+			<ul class="goods_type_list clearfix">
+                {% for foo in page %}
+                    <li>
+                        <a href="{% url 'goods:detail' %}"><img src="/static/{{ foo.pic }}"></a>
+                        <h4><a href="{% url 'goods:detail' %}">{{ foo.name }}</a></h4>
+                        <div class="operate">
+                            <span class="prize">￥ {{ foo.price }}</span>
+                            <span class="unit">{{ foo.unit }}</span>
+                            <a href="#" class="add_goods" title="加入购物车"></a>
+                        </div>
+                    </li>
+                {% endfor %}
+			</ul>
+
+			<div class="pagenation">
+				<a href="#"><上一页</a>
+                {% for foo in page.paginator.page_range %}
+                    {% if foo == page.number %}
+                        <a href="{% url 'goods:goods_list' %}?type={{ type }}&sort_flag=0&page_num={{ foo }}" class="active">{{ foo }}</a>
+                    {% else %}
+                        <a href="{% url 'goods:goods_list' %}?type={{ type }}&sort_flag=0&page_num={{ foo }}">{{ foo }}</a>
+                    {% endif %}
+                {% endfor %}
+				<a href="#">下一页></a>
+			</div>
+		</div>
+	</div>
+    {% endblock main %}
+
+	
+</body>
+</html>

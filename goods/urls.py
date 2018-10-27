@@ -3,6 +3,6 @@ from goods import views
 
 urlpatterns = [
     url(r'^index$', views.index, name='index'),
-    url(r'^list$', views.list, name='list'),
+    url(r'^goods_list$', views.goods_list, name='goods_list'),
     url(r'^detail$', views.detail, name='detail')
 ]

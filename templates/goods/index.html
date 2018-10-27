@@ -54,36 +54,23 @@
 			<h3 class="fl" id="model01">新鲜水果</h3>
 			<div class="subtitle fl">
 				<span>|</span>
-				<a href="#">鲜芒</a>
-				<a href="#">加州提子</a>
-				<a href="#">亚马逊牛油果</a>
+                {% for foo in fruit_click %}
+                    <a href="{% url 'goods:detail' %}">{{ foo.name }}</a>
+                {% endfor %}
 			</div>
-			<a href="#" class="goods_more fr" id="fruit_more">查看更多 ></a>
+			<a href="{% url 'goods:goods_list' %}?type={{ fruit_type.id }}&sort_flag=0&page_num=1" class="goods_more fr" id="fruit_more">查看更多 ></a>
 		</div>
 
 		<div class="goods_con clearfix">
 			<div class="goods_banner fl"><img src="/static/images/banner01.jpg"></div>
 			<ul class="goods_list fl">
-				<li>
-					<h4><a href="#">草莓</a></h4>
-					<a href="#"><img src="/static/images/goods/goods003.jpg"></a>
-					<div class="prize">¥ 30.00</div>
-				</li>
-				<li>
-					<h4><a href="#">葡萄</a></h4>
-					<a href="#"><img src="/static/images/goods/goods002.jpg"></a>
-					<div class="prize">¥ 5.50</div>
-				</li>
-				<li>
-					<h4><a href="#">柠檬</a></h4>
-					<a href="#"><img src="/static/images/goods/goods001.jpg"></a>
-					<div class="prize">¥ 3.90</div>
-				</li>
-				<li>
-					<h4><a href="#">奇异果</a></h4>
-					<a href="#"><img src="/static/images/goods/goods012.jpg"></a>
-					<div class="prize">¥ 25.80</div>
-				</li>
+                {% for foo in fruit_new %}
+                    <li>
+                        <h4><a href="{% url 'goods:detail' %}">{{ foo.name }}</a></h4>
+                        <a href="{% url 'goods:detail' %}"><img src="/static/{{ foo.pic }}"></a>
+                        <div class="prize">¥ {{ foo.price }}</div>
+                    </li>
+                {% endfor %}
 			</ul>
 		</div>
 	</div>

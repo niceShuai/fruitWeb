@@ -24,7 +24,7 @@ class GoodsInfo(models.Model):
     isDelete = models.BooleanField(default=False, verbose_name='逻辑删除')
     profile = HTMLField(verbose_name='商品详细介绍')
     click = models.IntegerField(verbose_name='点击量')
-    type = models.ForeignKey('GoodsInfo', verbose_name='所属类别')
+    type = models.ForeignKey('GoodsType', verbose_name='所属类别')
 
     def __str__(self):
         return self.name
