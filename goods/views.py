@@ -13,9 +13,9 @@ def index(request):
     return render(request, 'goods/index.html', context)
 
 def goods_list(request):
-    type = request.GET.get('type')
-    sort_flag = request.GET.get('sort_flag')
-    page_num = request.GET.get('page_num',1)
+    type = request.GET.get('type', 1)
+    sort_flag = request.GET.get('sort_flag', 0)
+    page_num = request.GET.get('page_num', 1)
     # 获取到商品种类
     goods_type = GoodsType.objects.filter(pk=type)[0]
     goods_alls = goods_type.goodsinfo_set.all()
@@ -40,8 +40,8 @@ def goods_list(request):
     return render(request, 'goods/goods_list.html', context)
 
 def detail(request):
-    type = request.GET.get('type')
-    goods = request.GET.get('goods')
+    type = request.GET.get('type', 1)
+    goods = request.GET.get('goods', 1)
     good = GoodsInfo.objects.filter(type_id=type,id=goods)[0]
     # 每次查询，点击量+1
     good.click += 1

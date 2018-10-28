@@ -46,18 +46,18 @@
 			<h3>{{ good.name }}</h3>
 			<p>{{ good.intro }}</p>
 			<div class="prize_bar">
-				<span class="show_pirze">¥<em>{{ good.price }}</em></span>
+				<span class="show_pirze" id="price">¥<em>{{ good.price }}</em></span>
 				<span class="show_unit">单  位：{{ good.unit }}</span>
 			</div>
 			<div class="goods_num clearfix">
 				<div class="num_name fl">数 量：</div>
 				<div class="num_add fl">
-					<input type="text" class="num_show fl" value="1">
-					<a href="javascript:;" class="add fr">+</a>
-					<a href="javascript:;" class="minus fr">-</a>	
+					<input type="text" class="num_show fl" value="1" id="sum">
+					<a href="javascript:;" class="add fr" id="add">+</a>
+					<a href="javascript:;" class="minus fr" id="minus">-</a>
 				</div> 
 			</div>
-			<div class="total">总价：<em>{{ good.price }}</em></div>
+			<div class="total">总价：¥<em>{{ good.price }}</em></div>
 			<div class="operate_btn">
 				<a href="javascript:;" class="buy_btn">立即购买</a>
 				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>				
@@ -113,7 +113,7 @@
 		var $to_x = $('#show_count').offset().top;
 		var $to_y = $('#show_count').offset().left;
 
-		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
+		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'});
 		$('#add_cart').click(function(){
 			$(".add_jump").stop().animate({
 				'left': $to_y+7,
@@ -124,7 +124,52 @@
 					});
 
 			});
-		})
+		});
+
+        $('#add').click(function () {
+            // 点击 + ，数量加1
+            $('#sum')[0].value = parseInt($('#sum').val()) + 1;
+            var $price = $('#price em').html();
+            var $total = (parseFloat($price) * $('#sum')[0].value).toFixed(2);
+            $('.total em').html($total);
+
+        });
+
+        $('#minus').click(function () {
+            // 点击 - ，数量减1
+            if ($('#sum').val() <= 1){
+                $('#sum')[0].value = 1;
+
+            }
+            else{
+                $('#sum')[0].value = parseInt($('#sum').val()) - 1;
+            }
+
+            var $price = $('#price em').html();
+            var $total = (parseFloat($price) * $('#sum')[0].value).toFixed(2);
+            $('.total em').html($total);
+        });
+
+        $('#sum').keyup(function () {
+            var num = $('#sum')[0].value;
+            var re = /^[0-9]+\.?[0-9]*$/;
+            var flag = re.test(num);
+            // 判断用户输入是否是数字
+            if (flag){
+                $('#sum')[0].value = parseInt($('#sum').val());
+            }
+            else {
+                $('#sum')[0].value = 1;
+            }
+
+            var $price = $('#price em').html();
+            var $total = (parseFloat($price) * $('#sum')[0].value).toFixed(2);
+            $('.total em').html($total);
+
+        });
+
+
+
 	</script>
     {% endblock self_js %}
 	
