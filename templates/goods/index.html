@@ -55,7 +55,7 @@
 			<div class="subtitle fl">
 				<span>|</span>
                 {% for foo in fruit_click %}
-                    <a href="{% url 'goods:detail' %}">{{ foo.name }}</a>
+                    <a href="{% url 'goods:detail' %}?type={{ fruit_type.id }}&goods={{ foo.id }}">{{ foo.name }}</a>
                 {% endfor %}
 			</div>
 			<a href="{% url 'goods:goods_list' %}?type={{ fruit_type.id }}&sort_flag=0&page_num=1" class="goods_more fr" id="fruit_more">查看更多 ></a>
@@ -66,8 +66,8 @@
 			<ul class="goods_list fl">
                 {% for foo in fruit_new %}
                     <li>
-                        <h4><a href="{% url 'goods:detail' %}">{{ foo.name }}</a></h4>
-                        <a href="{% url 'goods:detail' %}"><img src="/static/{{ foo.pic }}"></a>
+                        <h4><a href="{% url 'goods:detail' %}?type={{ fruit_type.id }}&goods={{ foo.id }}">{{ foo.name }}</a></h4>
+                        <a href="{% url 'goods:detail' %}?type={{ fruit_type.id }}&goods={{ foo.id }}"><img src="/static/{{ foo.pic }}"></a>
                         <div class="prize">¥ {{ foo.price }}</div>
                     </li>
                 {% endfor %}

@@ -12,6 +12,7 @@ class GoodsType(models.Model):
 
     class Meta:
         verbose_name = '商品分类'
+        verbose_name_plural = verbose_name
 
 
 class GoodsInfo(models.Model):
@@ -31,5 +32,6 @@ class GoodsInfo(models.Model):
 
     class Meta:
         verbose_name = '商品详细信息'
+        verbose_name_plural = verbose_name
 
 

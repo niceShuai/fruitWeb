@@ -79,8 +79,8 @@
 			<ul class="goods_type_list clearfix">
                 {% for foo in page %}
                     <li>
-                        <a href="{% url 'goods:detail' %}"><img src="/static/{{ foo.pic }}"></a>
-                        <h4><a href="{% url 'goods:detail' %}">{{ foo.name }}</a></h4>
+                        <a href="{% url 'goods:detail' %}?type={{ type }}&goods={{ foo.id }}"><img src="/static/{{ foo.pic }}"></a>
+                        <h4><a href="{% url 'goods:detail' %}?type={{ type }}&goods={{ foo.id }}">{{ foo.name }}</a></h4>
                         <div class="operate">
                             <span class="prize">￥ {{ foo.price }}</span>
                             <span class="unit">{{ foo.unit }}</span>
@@ -91,7 +91,11 @@
 			</ul>
 
 			<div class="pagenation">
-				<a href="#"><上一页</a>
+                {% if page.has_previous %}
+                    <a href="{% url 'goods:goods_list' %}?type={{ type }}&sort_flag=0&page_num={{ page.previous_page_number }}" class="active"><上一页</a>
+                {% else %}
+                {% endif %}
+
                 {% for foo in page.paginator.page_range %}
                     {% if foo == page.number %}
                         <a href="{% url 'goods:goods_list' %}?type={{ type }}&sort_flag=0&page_num={{ foo }}" class="active">{{ foo }}</a>
@@ -99,7 +103,11 @@
                         <a href="{% url 'goods:goods_list' %}?type={{ type }}&sort_flag=0&page_num={{ foo }}">{{ foo }}</a>
                     {% endif %}
                 {% endfor %}
-				<a href="#">下一页></a>
+                {% if page.has_next %}
+                    <a href="#" class="active">下一页></a>
+                {% else %}
+                {% endif %}
+
 			</div>
 		</div>
 	</div>
