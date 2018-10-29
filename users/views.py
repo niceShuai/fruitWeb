@@ -6,6 +6,8 @@ from django.http.response import JsonResponse, HttpResponse, HttpResponseRedirec
 
 from users.models import *
 
+from users.login_verify import *
+
 def register(request):
     return render(request, 'users/register.html')
 
@@ -64,7 +66,10 @@ def login_handel(request):
             remember_name = request.POST.get('remember_name', '')
             request.session['u_name'] = u_name
             request.session.set_expiry(6000)
-            hrr = HttpResponseRedirect('/user/user_center_info')
+            # 执行登陆验证的装饰器后，将请求地址存到了url的cookie里，这里取出来重定向回去
+            # 这样用户回到登陆前请求的页面
+            url = request.COOKIES.get('url', '/')
+            hrr = HttpResponseRedirect(url)
             # 如果remember_name==1，则将用户名存储至cookie
             if remember_name != '':
                 hrr.set_cookie('u_name', u_name)
@@ -83,16 +88,14 @@ def login_handel(request):
         context = {'u_name': u_name, 'error_flag': 1}
         return render(request, 'users/login.html', context)
 
-
-
-
-
-
+@verify
 def user_center_info(request):
     return render(request, 'users/user_center_info.html')
 
+@verify
 def user_center_order(request):
     return render(request, 'users/user_center_order.html')
 
+@verify
 def user_center_site(request):
     return render(request, 'users/user_center_site.html')
