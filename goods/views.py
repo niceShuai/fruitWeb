@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from goods.models import *
 from django.core.paginator import Paginator
+from django.http.response import HttpResponse
+from django.template import loader, RequestContext
 # Create your views here.
 def index(request):
     # 选择各类商品传到首页展示，最新商品放四个在大图，点击量最高商品放四个在小字上
@@ -42,9 +44,40 @@ def goods_list(request):
 def detail(request):
     type = request.GET.get('type', 1)
     goods = request.GET.get('goods', 1)
-    good = GoodsInfo.objects.filter(type_id=type,id=goods)[0]
+    good = GoodsInfo.objects.filter(id=goods)[0]
     # 每次查询，点击量+1
     good.click += 1
     good.save()
+
+    t1 = loader.get_template('goods/detail.html')
     context = {'good': good}
-    return render(request, 'goods/detail.html', context)
+    http_res = HttpResponse(t1.render(context))
+
+    # 增加最近浏览功能，用户每次点击的商品id存入cookie，最多存储五个id。
+    # 本次点击的商品的id
+    recent_review_id = int(goods)
+
+    # 存储商品id的cookie，是一个list
+    recent_review_ids = request.COOKIES.get('recent_review_ids', [])
+
+    if recent_review_ids != []:
+        # 如果存储商品id的cookie不是空，把当前商品id insert到列表第一位，然后写入cookie
+        recent_review_ids = eval(recent_review_ids) # cookie取出来是"[ , ]",用此函数转化为[ , ]
+        if recent_review_id in recent_review_ids:
+            # 如果本次点击商品的id已存在于cookie中，则删除，然后insert到第0位
+            recent_review_ids.remove(recent_review_id)
+        recent_review_ids.insert(0,recent_review_id)
+
+        # 最近浏览只存五个
+        if len(recent_review_ids) > 5:
+            del recent_review_ids[5]
+
+    else:
+        # 如果存储商品id的cookie是空，则将本次点击的商品的id存入列表后，存入cookie
+        recent_review_ids.insert(0, recent_review_id)
+
+    print(recent_review_ids)
+    http_res.set_cookie('recent_review_ids', recent_review_ids)
+
+
+    return http_res

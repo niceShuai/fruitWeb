@@ -5,6 +5,7 @@ from django.http.response import JsonResponse, HttpResponse, HttpResponseRedirec
 # Create your views here.
 
 from users.models import *
+from goods.models import *
 
 from users.login_verify import *
 
@@ -92,7 +93,21 @@ def logout(request):
 
 @verify
 def user_center_info(request):
-    return render(request, 'users/user_center_info.html')
+    recent_review_ids = request.COOKIES.get('recent_review_ids', [])
+
+    goods_all = []
+
+    # 将要传递给最近浏览页面的数据存储到列表goods_all里
+    if recent_review_ids != []:
+        recent_review_ids = eval(recent_review_ids)
+
+        for temp in recent_review_ids:
+            goods = GoodsInfo.objects.get(id=temp)
+            goods_all.append(goods)
+
+    # 传递上下文，如果cookie里没有值，则上下文为空列表 []
+    context = {'goods_all': goods_all}
+    return render(request, 'users/user_center_info.html', context)
 
 @verify
 def user_center_order(request):
