@@ -23,7 +23,7 @@ html,body{height:100%}
 
 .login_info em{color:#ff8800}
 
-.login_btn a,.user_link a{
+.login_btn a,.user_link a,.login_info a,.login_info span{
 	color:#666;
 }
 

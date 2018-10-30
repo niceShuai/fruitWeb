@@ -75,8 +75,6 @@ def login_handel(request):
                 hrr.set_cookie('u_name', u_name)
             else:
                 hrr.set_cookie('u_name','', max_age=-1)
-
-            print('用户名和密码匹配正确')
             # 转到用户信息界面
             return hrr
         else:
@@ -87,6 +85,10 @@ def login_handel(request):
     else:
         context = {'u_name': u_name, 'error_flag': 1}
         return render(request, 'users/login.html', context)
+
+def logout(request):
+    request.session.flush()
+    return redirect('/')
 
 @verify
 def user_center_info(request):

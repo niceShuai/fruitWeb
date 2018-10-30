@@ -16,6 +16,7 @@
                 {% if request.session.u_name|default:'' != '' %}
 				<div class="login_info fl">
 					欢迎您：<em>{{ request.session.u_name }}</em>
+                    <a href="{% url 'users:logout' %}">退出</a>
 				</div>
                 {% else %}
 				<div class="login_btn fl">
