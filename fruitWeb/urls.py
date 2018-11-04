@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^index$', views.index),
     url(r'^$', views.index),
     url(r'^goods/', include('goods.urls', namespace='goods')),
-    url(r'^tinymce/', include('tinymce.urls'))
+    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^cart/', include('cart.urls', namespace='cart'))
 ]
