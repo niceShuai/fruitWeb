@@ -63,9 +63,10 @@ def login_handel(request):
         m.update(u_pwd_str.encode('utf-8'))
         u_pwd_md5 = m.hexdigest()
         if u_pwd_md5 == user_info[0].user_pwd:
-            # 验证成功后，将用户名存储至session，建立会话保持
+            # 验证成功后，将用户名和用户id存储至session，建立会话保持
             remember_name = request.POST.get('remember_name', '')
             request.session['u_name'] = u_name
+            request.session['u_id'] = user_info[0].id
             request.session.set_expiry(6000)
             # 执行登陆验证的装饰器后，将请求地址存到了url的cookie里，这里取出来重定向回去
             # 这样用户回到登陆前请求的页面

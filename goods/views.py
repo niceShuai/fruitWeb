@@ -76,7 +76,7 @@ def detail(request):
         # 如果存储商品id的cookie是空，则将本次点击的商品的id存入列表后，存入cookie
         recent_review_ids.insert(0, recent_review_id)
 
-    print(recent_review_ids)
+    # print(recent_review_ids)
     http_res.set_cookie('recent_review_ids', recent_review_ids)
 
 

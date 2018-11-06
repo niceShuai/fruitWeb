@@ -120,10 +120,18 @@
 				'top': $to_x+7},
 				"fast", function() {
 					$(".add_jump").fadeOut('fast',function(){
-						$('#show_count').html(2);
+						{#$('#show_count').html(2);#}
 					});
 
 			});
+
+            var add_id = {{ good.id }}; //商品id
+            var add_num = $('#sum').val(); //商品数量
+            $.get('{% url 'cart:add_cart' %}', {'add_id': add_id, 'add_num': add_num}, function(data){
+                    $('#show_count').html(data.count);
+                }
+            );
+
 		});
 
         $('#add').click(function () {
@@ -167,7 +175,6 @@
             $('.total em').html($total);
 
         });
-
 
 
 	</script>
