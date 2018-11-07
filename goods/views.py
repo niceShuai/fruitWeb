@@ -42,16 +42,14 @@ def goods_list(request):
     return render(request, 'goods/goods_list.html', context)
 
 def detail(request):
-    type = request.GET.get('type', 1)
     goods = request.GET.get('goods', 1)
     good = GoodsInfo.objects.filter(id=goods)[0]
     # 每次查询，点击量+1
     good.click += 1
     good.save()
 
-    t1 = loader.get_template('goods/detail.html')
     context = {'good': good}
-    http_res = HttpResponse(t1.render(context))
+    http_res = render(request, 'goods/detail.html', context)
 
     # 增加最近浏览功能，用户每次点击的商品id存入cookie，最多存储五个id。
     # 本次点击的商品的id
@@ -76,8 +74,6 @@ def detail(request):
         # 如果存储商品id的cookie是空，则将本次点击的商品的id存入列表后，存入cookie
         recent_review_ids.insert(0, recent_review_id)
 
-    # print(recent_review_ids)
     http_res.set_cookie('recent_review_ids', recent_review_ids)
-
 
     return http_res

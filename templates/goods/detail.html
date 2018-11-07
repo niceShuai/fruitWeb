@@ -3,15 +3,14 @@
 
 {% block title %}商品详情{% endblock %}
 
-<body>
 
     {% block main %}
 
 	<div class="navbar_con">
 		<div class="navbar clearfix">
 			<div class="subnav_con fl">
-				<h1>全部商品分类</h1>	
-				<span></span>			
+				<h1>全部商品分类</h1>
+				<span></span>
 				<ul class="subnav">
 					<li><a href="#" class="fruit">新鲜水果</a></li>
 					<li><a href="#" class="seafood">海鲜水产</a></li>
@@ -55,12 +54,12 @@
 					<input type="text" class="num_show fl" value="1" id="sum">
 					<a href="javascript:;" class="add fr" id="add">+</a>
 					<a href="javascript:;" class="minus fr" id="minus">-</a>
-				</div> 
+				</div>
 			</div>
 			<div class="total">总价：¥ <em>{{ good.price }}</em></div>
 			<div class="operate_btn">
 				<a href="javascript:;" class="buy_btn">立即购买</a>
-				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>				
+				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>
 			</div>
 		</div>
 	</div>
@@ -120,7 +119,7 @@
 				'top': $to_x+7},
 				"fast", function() {
 					$(".add_jump").fadeOut('fast',function(){
-						{#$('#show_count').html(2);#}
+						$('#show_count').html(2);
 					});
 
 			});
@@ -179,6 +178,4 @@
 
 	</script>
     {% endblock self_js %}
-	
-</body>
-</html>
+
