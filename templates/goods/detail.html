@@ -114,12 +114,19 @@
 
 		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'});
 		$('#add_cart').click(function(){
+
+		    // 判断是否登陆，未登陆则页面跳转至登陆界面
+		    if ($('.login_info').html()==undefined){
+		        window.location.href = '/user/login';
+		        return;
+            }
+
 			$(".add_jump").stop().animate({
 				'left': $to_y+7,
 				'top': $to_x+7},
 				"fast", function() {
 					$(".add_jump").fadeOut('fast',function(){
-						$('#show_count').html(2);
+						{#$('#show_count').html(2);#}
 					});
 
 			});

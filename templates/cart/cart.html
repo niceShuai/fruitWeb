@@ -5,6 +5,19 @@
 	<title>天天生鲜-购物车</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            {#$tiny_price = $('.col05').val() * $('.num_show').val();#}
+            {#alert($tiny_price);#}
+            $('#price').each(function (i) {
+                {#alert($(this).html());#}
+                $(this).html('aaa'+i);
+            });
+
+
+        });
+    </script>
 </head>
 <body>
     <div class="header_con">
@@ -44,7 +57,7 @@
 		</div>		
 	</div>
 
-	<div class="total_count">全部商品<em>2</em>件</div>	
+	<div class="total_count">全部商品<em>{{ carts | length }}</em>件</div>
 	<ul class="cart_list_th clearfix">
 		<li class="col01">商品名称</li>
 		<li class="col02">商品单位</li>
@@ -61,11 +74,11 @@
             <li class="col02"><img src="/static/{{ cart.goods.pic }}"></li>
             <li class="col03">{{ cart.goods.name }}<br><em>{{ cart.goods.price }}元/{{ cart.goods.unit }}</em></li>
             <li class="col04">{{ cart.goods.unit }}</li>
-            <li class="col05">{{ cart.goods.price }}元</li>
+            <li class="col05" id="price">{{ cart.goods.price }}元</li>
             <li class="col06">
                 <div class="num_add">
                     <a href="javascript:;" class="add fl">+</a>
-                    <input type="text" class="num_show fl" value="{{ cart.count }}">
+                    <input type="text" class="num_show fl" value="{{ cart.count }}" id="num">
                     <a href="javascript:;" class="minus fl">-</a>
                 </div>
             </li>
@@ -75,14 +88,10 @@
 
     {% endfor %}
 
-
-
-
-
 	<ul class="settlements">
 		<li class="col01"><input type="checkbox" name="" checked=""></li>
 		<li class="col02">全选</li>
-		<li class="col03">合计(不含运费)：<span>¥</span><em>42.60</em><br>共计<b>2</b>件商品</li>
+		<li class="col03">合计(不含运费)：<span>¥</span><em>42.60</em><br>共计<b>{{ carts | length }}</b>件商品</li>
 		<li class="col04"><a href="place_order.html">去结算</a></li>
 	</ul>
 

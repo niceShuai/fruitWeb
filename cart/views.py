@@ -39,5 +39,4 @@ def add_cart(request):
 
     # if request.is_ajax():
     count = Cart.objects.filter(user=u_id).count()
-        # print(count)
     return JsonResponse({'count': count})
