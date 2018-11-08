@@ -8,13 +8,17 @@
     <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            {#$tiny_price = $('.col05').val() * $('.num_show').val();#}
-            {#alert($tiny_price);#}
-            $('#price').each(function (i) {
-                {#alert($(this).html());#}
-                $(this).html('aaa'+i);
-            });
 
+            var all_price = 0;
+            // 实现在购物车中计算商品价格
+            $('.cart_list_td .col07').each(function (i) {
+                var $price = parseFloat($(this).prevAll('.col05').html());
+                var $num = parseFloat($(this).prev().find('.num_show').val());
+                var total_price = ($price * $num).toFixed(2);
+                $(this).html('¥'+total_price);
+                all_price += parseFloat(total_price);
+             });
+            $('.settlements .col03 em').html(all_price.toFixed(2));
 
         });
     </script>
@@ -74,7 +78,7 @@
             <li class="col02"><img src="/static/{{ cart.goods.pic }}"></li>
             <li class="col03">{{ cart.goods.name }}<br><em>{{ cart.goods.price }}元/{{ cart.goods.unit }}</em></li>
             <li class="col04">{{ cart.goods.unit }}</li>
-            <li class="col05" id="price">{{ cart.goods.price }}元</li>
+            <li class="col05">{{ cart.goods.price }}元</li>
             <li class="col06">
                 <div class="num_add">
                     <a href="javascript:;" class="add fl">+</a>
