@@ -10,6 +10,7 @@
         $(function () {
 
             var all_price = 0;
+            var all_count = 0;
             // 实现在购物车中计算商品价格
             $('.cart_list_td .col07').each(function (i) {
                 var $price = parseFloat($(this).prevAll('.col05').html());
@@ -17,8 +18,10 @@
                 var total_price = ($price * $num).toFixed(2);
                 $(this).html('¥'+total_price);
                 all_price += parseFloat(total_price);
+                all_count ++;
              });
             $('.settlements .col03 em').html(all_price.toFixed(2));
+            $('.settlements .col03 b').html(all_count);
 
         });
     </script>
@@ -95,7 +98,7 @@
 	<ul class="settlements">
 		<li class="col01"><input type="checkbox" name="" checked=""></li>
 		<li class="col02">全选</li>
-		<li class="col03">合计(不含运费)：<span>¥</span><em>42.60</em><br>共计<b>{{ carts | length }}</b>件商品</li>
+		<li class="col03">合计(不含运费)：<span>¥</span><em>42.60</em><br>共计<b></b>件商品</li>
 		<li class="col04"><a href="place_order.html">去结算</a></li>
 	</ul>
 
