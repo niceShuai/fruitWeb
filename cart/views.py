@@ -19,7 +19,7 @@ def place_order(request):
 
 @verify # add_cart是ajax的请求，用装饰器来判断登陆是全页面更新，无法起作用。所以要在js中判断登陆。
 def add_cart(request):
-    # 在商品详情页点击购买后，创建购物车对象，存入用户id，商品id，商品数量
+    # 在商品详情页点击加入购物车后，创建购物车对象，存入用户id，商品id，商品数量
     u_id = int(request.session.get('u_id'))
     add_id = int(request.GET.get('add_id'))
     add_num = int(request.GET.get('add_num'))
@@ -40,3 +40,14 @@ def add_cart(request):
     # if request.is_ajax():
     count = Cart.objects.filter(user=u_id).count()
     return JsonResponse({'count': count})
+
+def edit_goods(request):
+    id = request.GET.get('id')
+    num = request.GET.get('num')
+    cart = Cart.objects.filter(id=id)[0]
+    cart.count = num
+    cart.save()
+    return JsonResponse(None)
+
+def del_goods(request):
+    return JsonResponse(None)
