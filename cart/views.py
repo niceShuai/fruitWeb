@@ -50,4 +50,10 @@ def edit_goods(request):
     return JsonResponse(None)
 
 def del_goods(request):
-    return JsonResponse(None)
+    try:
+        id = request.GET.get('id')
+        Cart.objects.filter(id=id).delete()
+        context = {"flag": 1}
+    except:
+        context = {"flag": 0}
+    return JsonResponse(context)

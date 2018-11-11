@@ -88,12 +88,22 @@
             }
 
             // 删除按钮
-            {#$('.cart_list_td .col08').click(function () {#}
-            {#    var $id = $(this).parent().attr('id');#}
-            {#    $.get('/cart/del_goods', {"id": $id}, function () {#}
-            {#        #}
-            {#    })#}
-            {# }) #}
+            $('.cart_list_td .col08').click(function () {
+                del = confirm('确定要删除吗？');
+                if (del) {
+                    var $id = $(this).parent().attr('id');
+                    $.get('/cart/del_goods', {"id": $id}, function (data) {
+                        if (data.flag) {
+                            $('#'+$id).remove();
+                            cul();
+                        }
+                        else{
+                            alert('操作失败，请重新尝试');
+                        }
+                 })
+                }
+
+             })
 
 
         });

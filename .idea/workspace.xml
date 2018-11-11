@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a117ae13-e1b3-47b0-b3ad-2b481ff0fc98" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cart/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart/cart.html" afterDir="false" />
     </list>
@@ -29,7 +28,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="12" />
-          <entry key="html" value="116" />
+          <entry key="html" value="118" />
           <entry key="js" value="12" />
           <entry key="png" value="1" />
           <entry key="py" value="131" />
@@ -38,7 +37,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="12" />
-          <entry key="HTML" value="116" />
+          <entry key="HTML" value="118" />
           <entry key="Image" value="1" />
           <entry key="JavaScript" value="12" />
           <entry key="Python" value="131" />
@@ -48,17 +47,17 @@
         <counts>
           <entry key="Django Console" value="171" />
           <entry key="css" value="50" />
-          <entry key="html" value="7272" />
+          <entry key="html" value="7473" />
           <entry key="js" value="1188" />
-          <entry key="py" value="10172" />
+          <entry key="py" value="10289" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="50" />
-          <entry key="HTML" value="7272" />
+          <entry key="HTML" value="7473" />
           <entry key="JavaScript" value="1188" />
-          <entry key="Python" value="10343" />
+          <entry key="Python" value="10460" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -78,9 +77,9 @@
                 <state relative-caret-position="38">
                   <caret line="2" selection-start-line="2" selection-end-line="2" />
                   <folding>
-                    <marker date="1541865479278" expanded="true" signature="367:372" ph="..." />
-                    <marker date="1541865479278" expanded="true" signature="448:453" ph="..." />
-                    <marker date="1541865479278" expanded="true" signature="1280:1285" ph="..." />
+                    <marker date="1541897329753" expanded="true" signature="367:372" ph="..." />
+                    <marker date="1541897329753" expanded="true" signature="448:453" ph="..." />
+                    <marker date="1541897329753" expanded="true" signature="1280:1285" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -89,8 +88,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/cart/cart.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+                <state relative-caret-position="276">
+                  <caret line="97" column="34" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
                 </state>
               </provider>
             </entry>
@@ -100,16 +99,10 @@
       <split-second>
         <leaf>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cart/views.py">
+            <entry file="file://$PROJECT_DIR$/templates/cart/cart.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="338">
-                  <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-                  <folding>
-                    <element signature="e#0#35#0" expanded="true" />
-                    <marker date="1541865479278" expanded="true" signature="367:372" ph="..." />
-                    <marker date="1541865479278" expanded="true" signature="448:453" ph="..." />
-                    <marker date="1541865479278" expanded="true" signature="1280:1285" ph="..." />
-                  </folding>
+                <state relative-caret-position="-989">
+                  <caret line="99" column="29" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -191,8 +184,8 @@
         <option value="$PROJECT_DIR$/templates/goods/goods_list.html" />
         <option value="$PROJECT_DIR$/templates/goods/base.html" />
         <option value="$PROJECT_DIR$/templates/goods/detail.html" />
-        <option value="$PROJECT_DIR$/cart/views.py" />
         <option value="$PROJECT_DIR$/cart/urls.py" />
+        <option value="$PROJECT_DIR$/cart/views.py" />
         <option value="$PROJECT_DIR$/templates/cart/cart.html" />
       </list>
     </option>
@@ -329,7 +322,7 @@
       <window_info id="Favorites" order="2" sideWeight="0.5019455" side_tool="true" weight="0.16882068" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.29589042" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29589042" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -641,23 +634,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cart/cart.html">
+    <entry file="file://$PROJECT_DIR$/cart/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+        <state relative-caret-position="38">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <marker date="1541897329753" expanded="true" signature="367:372" ph="..." />
+            <marker date="1541897329753" expanded="true" signature="448:453" ph="..." />
+            <marker date="1541897329753" expanded="true" signature="1280:1285" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cart/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/cart/cart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1541865479278" expanded="true" signature="367:372" ph="..." />
-            <marker date="1541865479278" expanded="true" signature="448:453" ph="..." />
-            <marker date="1541865479278" expanded="true" signature="1280:1285" ph="..." />
-          </folding>
+        <state relative-caret-position="276">
+          <caret line="97" column="34" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
         </state>
       </provider>
     </entry>
